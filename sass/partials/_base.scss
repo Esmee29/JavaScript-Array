@@ -130,19 +130,41 @@ html{
 li{
   text-align: left;
 margin: 10px 0;}
-.image{
-border: 1ex solid white;
-border-radius: 3px;
+.image {
+  width: 100vw;
+  height: 100vh;
 }
-@media (min-width: 320px) and (max-width: 767px){
-  .image{
-    width: 80vw;
-    height: auto;
-  }
+.blank {
+  background-color: black;
+  width: 600px;
+  height: 300px;
+  display: block;
+  border: 1ex solid white;
+  border-radius: 3px;
 }
-.image-container{
+
+
+#center-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 20px 0;
+  height: 100%;
+}
+
+#image-container {
+  background-color: black;
+  width: 600px;
+  height: 300px;
+  border: 1ex solid white;
+  border-radius: 3px;
+}
+@media (min-width: 320px) and (max-width: 630px){
+  #image-container {
+      margin: 0 10px;
+  }
+  }
+.responsive-image {
+  width: 100%;
+  height: auto;
 }
