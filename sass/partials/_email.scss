@@ -1,0 +1,124 @@
+.email-input {
+    padding: 1.5rem 1rem;
+    margin: 1rem;
+    border: 3px solid white;
+    border-radius: 6px;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+    @include viewport(medium){
+        width: 310px;
+    } 
+    @include viewport(large){
+        width: 400px;
+            }
+            @include viewport(x-large){
+                width: 500px;
+                    }  
+}
+.email-textfield {
+    box-sizing: border-box;
+    font-family: "Josefin Sans", sans-serif;
+    padding: 12px 20px;
+    width: 100%;
+    background-color: white;
+    color: #303030;
+    border: 2px solid #185ad4;
+    border-radius: 2px;
+}
+input:focus {
+    outline: none;
+}
+.email-select{
+    padding: 2rem 1rem;
+    margin: 1rem;
+    border: 3px solid white;
+    border-radius: 6px;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+    @include viewport(medium){
+        width: 310px;
+    }
+    @include viewport(large){
+        width: 400px;
+            }
+            @include viewport(x-large){
+                width: 500px;
+                margin-top: 35px;
+                    }    
+}
+#email-address-dropdown {
+    box-sizing: border-box;
+    font-family: "Josefin Sans", sans-serif;
+    padding: 12px 20px;
+    width: 100%;
+    background-color: white;
+    color: #303030;
+    border: 2px solid #185ad4;
+    border-radius: 2px
+}
+select:focus {
+    outline: none;
+}
+.email-group{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    @include viewport(small){
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%; 
+    }
+    @include viewport(medium){
+        flex-wrap: wrap;
+    }
+    @include viewport(x-large){
+        justify-content: center;
+        width: 100%; 
+            }   
+}
+.gallery{
+    padding: 2rem 1rem;
+    margin: 1rem;
+    border: 3px solid white;
+    border-radius: 6px;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+    @include viewport(small){
+        min-height: 150px;
+        
+        margin-top: 0;
+        }
+        @include viewport(medium){
+            justify-content: center;
+            width: 90vw;
+            min-height: 150px;
+            position: relative;
+        }
+    @include viewport(large){
+        width: 600px;
+            }
+            @include viewport(x-large){
+                width: 600px;
+                    }  
+}
+.email-boxes {
+    @include viewport(medium){
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+    }
+}
+#assigned-image-text{
+    @include viewport(medium){
+        position: absolute;
+    top: 30px;
+    }  
+}

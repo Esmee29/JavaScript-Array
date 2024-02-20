@@ -1,0 +1,33 @@
+
+#center-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  @media (min-width: 320px) and (max-width: 767px){
+    .image {
+        margin: 0 20px;
+        width: 90vw;
+        height: auto;
+        justify-content: center;
+    }
+    }
+  
+  .responsive-image{
+    width: 100%;
+    height: fit-content;
+    border: 6px solid white;
+    border-radius: 3px;
+    
+    @include viewport(small){
+        border: 4px solid white;
+        }
+  }
+  .image{
+    display: flex;
+    background-color: white;
+  }
+  

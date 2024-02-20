@@ -23,9 +23,35 @@
             </header>
             <main>
                 <div id="center-container">
-                    <div id="image-container" class="blank"></div>
-                    <button  id="generate-image" class="image-btn">Generate Image</button>
+                    <div id="image-container" class="image"></div>
+                    <button  id="generate-image" class="image-btn btn">Generate Image</button>
                   </div>
+                  <div class="email-group">
+                    <div class="email-boxes">
+                        <div class="email-input">
+                            <h3>Add an email address below:</h3>
+                            <input id="email-textfield" class="email-textfield" type="email" placeholder="Enter an email address">
+                            <small></small>
+                            <button id="add-email-btn" class="btn" type="button">Add Email</button>
+                        </div>
+                        <div class="email-select">
+                            <h3 id="current-email-text">Enter an email address above</h3>
+                                <div class="space-between"></div>
+                            <h3 id="select-email-text">Select an email address:</h3>
+                            <select id="email-address-dropdown">
+                                <option>Please select an email address.</option> 
+                            </select>
+                            <button id="add-image-btn" class="btn" type="button">Add Current Image</button>  
+                        </div>
+                    </div>
+                    <div class="gallery">
+                        <h3 id="assigned-image-text">Images assigned to email:</h3>
+                        <div id="image-displayer">
+
+                        </div>
+                    </div>
+                  </div>
+                  
             </main>
            
         </div>

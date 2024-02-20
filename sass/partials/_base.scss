@@ -53,6 +53,12 @@ html{
   list-style-position: inside;
   margin-top: 0;
 }
+@media (min-width: 320px) and (max-width: 767px){
+  .center {
+    text-align: left;
+  }
+  }
+  //header//
 #header-text{
   display: flex;
   flex-direction: column;
@@ -68,43 +74,30 @@ html{
 li{
   text-align: left;
 margin: 10px 0;}
-.image {
-  width: 100vw;
-  height: 100vh;
-}
-
-#center-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-}
-
-#image-container {
-  background-color: #329FF4;
-  width: 600px;
-  height: 300px;
-  border: 1ex solid white;
-  border-radius: 3px;
-}
-@media (min-width: 320px) and (max-width: 767px){
-  #image-container {
-      margin: 0 20px;
-      width: 90vw;
-      height: 150px;
-  }
-  }
-
-.image-btn{
+.btn{
   background-color: white;
   color: #185ad4;
   padding: 10px;
   border: none;
   border-radius: 3px;
   margin-top: 20px;
+  font-weight: 600;
+  font-family: "Josefin Sans", sans-serif;
+  text-transform: uppercase;
 }
-.responsive-image{
-  width: 100%;
-  height: 100%;
+.btn:hover{
+  background-color: #185ad4;
+  color: white;
+  cursor: pointer;
+}
+.btn:visited{
+  background-color: white;
+  color: #185ad4;
+}
+.btn:active{
+  background-color: white;
+  color: #185ad4;
+}
+h3{
+  margin-top: 0;
 }
