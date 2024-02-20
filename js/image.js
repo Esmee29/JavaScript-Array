@@ -31,3 +31,5 @@ displayRandomImage();
 
 // Change the image when the button is clicked
 document.getElementById('generate-image').addEventListener('click', displayRandomImage);
+
+
