@@ -1,4 +1,6 @@
-//email validation
+// Email Validation and Dropdown
+// Change the image when the button is clicked
+document.getElementById('generate-image').addEventListener('click', displayRandomImage);
 
 // Email button
 const addEmailBtn = document.getElementById('add-email-btn');
@@ -8,9 +10,9 @@ addEmailBtn.addEventListener('click', function() {
   // Get the email input element
   const emailInput = document.getElementById('email-textfield');
 
-  // Validate email (format: xxx@xxx.xxx)
-  const email = emailInput.value;
-  const emailRegex = /^[^\s@]+([-][^\s@]+)?@[^\s@]+\.[^\s@]+$/;
+   // Validate email (format: xxx@xxx.xxx)
+   const email = emailInput.value;
+   const emailRegex = /^[^\s@]+([-][^\s@]+)?@[^\s@]+\.[^\s@]+$/;
 
   if (!emailRegex.test(email)) {
     alert('Please enter a valid email address');
@@ -33,17 +35,4 @@ addEmailBtn.addEventListener('click', function() {
 
   // Clear the email input field
   emailInput.value = '';
-});
-
-// Get the select list element
-const selectList = document.getElementById('email-address-dropdown');
-
-// Add event listener to the select element
-selectList.addEventListener('change', function() {
-  // Get the selected option
-  const selectedOption = selectList.options[selectList.selectedIndex];
-  
-  // Change the current email text to the selected email address
-  const currentEmailText = document.getElementById('current-email-text');
-  currentEmailText.textContent = selectedOption.value;
 });
