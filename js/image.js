@@ -37,15 +37,19 @@ selectList.addEventListener('change', function() {
   const currentEmailText = document.getElementById('current-email-text');
   currentEmailText.textContent = selectedOption.value;
 
-  document.getElementById('add-image-btn').disabled = false;
+  const addImageButton = document.getElementById('add-image-btn');
+  addImageButton.disabled = false;
 });
 
 document.getElementById('add-image-btn').addEventListener('click', function() {
+  const selectList = document.getElementById('email-address-dropdown');
   const selectedOption = selectList.options[selectList.selectedIndex];
+  
   if (!selectedOption || selectedOption.value === 'Please select an email address.') {
     alert('Please select an email address before adding the image.');
     return;
   }
+  
   const displayedImage = document.getElementById('display-image');
   const imageUrl = displayedImage.src;
 
@@ -56,5 +60,6 @@ document.getElementById('add-image-btn').addEventListener('click', function() {
 
   const emailContainer = document.getElementById('images-selected');
   emailContainer.appendChild(imageElement);
+  
   this.disabled = true;
 });

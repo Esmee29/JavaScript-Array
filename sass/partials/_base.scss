@@ -1,5 +1,5 @@
 html{
-  color:white;
+  color:$primary-color;
   background: linear-gradient(270deg, #3bcee9, #329ff4, #185ad4);
   background-size: 600% 600%;
   animation: gradient 15s ease infinite;
@@ -75,8 +75,8 @@ li{
 text-align: left;
 margin: 10px 0;}
 .btn{
-background-color: white;
-color: #185ad4;
+background-color: $primary-color;
+color: $secondary-color;
 padding: 10px;
 border: none;
 border-radius: 3px;
@@ -86,17 +86,17 @@ font-family: "Josefin Sans", sans-serif;
 text-transform: uppercase;
 }
 .btn:hover{
-background-color: #185ad4;
-color: white;
+background-color: $secondary-color;
+color: $primary-color;
 cursor: pointer;
 }
 .btn:visited{
-background-color: white;
-color: #185ad4;
+background-color: $primary-color;
+color: $secondary-color;
 }
 .btn:active{
-background-color: white;
-color: #185ad4;
+background-color: $primary-color;
+color: $secondary-color;
 }
 h3{
 margin-top: 0;
@@ -117,7 +117,7 @@ margin: 0 -10px -12px -10px;
 position:relative;
 height:20vh;
 text-align:center;
-background-color: white;
+background-color: $primary-color;
 }
 
 /* Animation */
