@@ -29,37 +29,71 @@ displayRandomImage();
 // Change the image when the button is clicked
 document.getElementById('generate-image').addEventListener('click', displayRandomImage);
 
-// Selecting an email address and assigning an image to it
-const selectList = document.getElementById('email-address-dropdown');
-selectList.addEventListener('change', function() {
-  const selectedOption = selectList.options[selectList.selectedIndex];
-  
-  const currentEmailText = document.getElementById('current-email-text');
-  currentEmailText.textContent = selectedOption.value;
-
-  const addImageButton = document.getElementById('add-image-btn');
-  addImageButton.disabled = false;
-});
-
+// Functionality for selecting an email address and associating an image with it
 document.getElementById('add-image-btn').addEventListener('click', function() {
+  // Fetching the dropdown list element and the selected option
   const selectList = document.getElementById('email-address-dropdown');
   const selectedOption = selectList.options[selectList.selectedIndex];
-  
+
+  // Checking if an email address is selected
   if (!selectedOption || selectedOption.value === 'Please select an email address.') {
-    alert('Please select an email address before adding the image.');
+    alert('Please choose an email address before adding the image.');
     return;
   }
-  
+
+  // Fetching the displayed image and its URL
   const displayedImage = document.getElementById('display-image');
   const imageUrl = displayedImage.src;
 
+  // Retrieving the selected email address and creating an image element
   const selectedEmail = selectedOption.value;
   const imageElement = document.createElement('img');
   imageElement.src = imageUrl;
-  imageElement.classList.add('gallery-image'); //assigned image class
+  imageElement.classList.add('gallery-image');
 
+  // Adding the image element to the email container
   const emailContainer = document.getElementById('images-selected');
   emailContainer.appendChild(imageElement);
-  
+
+  // Adding the image URL to the map corresponding to the email address
+  if (!emailImageMap.has(selectedEmail)) {
+    emailImageMap.set(selectedEmail, []);
+  }
+  emailImageMap.get(selectedEmail).push(imageUrl);
+
+  // Disabling the button after adding the image
   this.disabled = true;
+});
+
+// Functionality for assigning images to multiple email addresses
+let emailImageMap = new Map();
+document.getElementById('email-address-dropdown').addEventListener('change', function() {
+  // Fetching the selected option from the dropdown
+  const selectedOption = this.options[this.selectedIndex];
+  // Updating the displayed email address
+  const currentEmailText = document.getElementById('current-email-text');
+  currentEmailText.textContent = selectedOption.value;
+
+  // Updating the assigned image text with the selected email address
+  const assignedImageText = document.getElementById('assigned-image-text');
+  assignedImageText.textContent = `Assigned to: ${selectedOption.value}`;
+
+  // Enabling the 'add image' button
+  const addImageButton = document.getElementById('add-image-btn');
+  addImageButton.disabled = false;
+
+  // Clearing the current gallery of images
+  const emailContainer = document.getElementById('images-selected');
+  while (emailContainer.firstChild) {
+    emailContainer.removeChild(emailContainer.firstChild);
+  }
+
+  // Populating the gallery with images associated with the selected email address
+  const images = emailImageMap.get(selectedOption.value) || [];
+  images.forEach(imageUrl => {
+    const imageElement = document.createElement('img');
+    imageElement.src = imageUrl;
+    imageElement.classList.add('gallery-image');
+    emailContainer.appendChild(imageElement);
+  });
 });
