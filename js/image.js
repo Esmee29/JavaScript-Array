@@ -26,7 +26,8 @@ function displayRandomImage() {
 }
 // Display a random image when the page loads
 displayRandomImage();
-
+// Change the image when the button is clicked
+document.getElementById('generate-image').addEventListener('click', displayRandomImage);
 
 // Selecting an email address and assigning an image to it
 const selectList = document.getElementById('email-address-dropdown');
