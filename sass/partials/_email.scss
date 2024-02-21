@@ -131,4 +131,10 @@ select:focus {
     display: none;
     color: $primary-color; 
     margin-bottom: 10px;
+    @include viewport(small){
+        line-height: 20px;
+        }
+        @include viewport(medium){
+            line-height: 20px;
+        }
   }
