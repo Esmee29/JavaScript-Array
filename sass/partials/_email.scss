@@ -81,33 +81,7 @@ select:focus {
         width: 100%; 
             }   
 }
-.gallery{
-    padding: 2rem 1rem;
-    margin: 1rem;
-    border: 3px solid $primary-color;
-    border-radius: 6px;
-    background-color: transparent;
-    display: flex;
-    flex-direction: column;
-    width: 80vw;
-    @include viewport(small){
-        min-height: 150px;
-        
-        margin-top: 0;
-        }
-        @include viewport(medium){
-            justify-content: center;
-            width: 90vw;
-            min-height: 150px;
-            position: relative;
-        }
-    @include viewport(large){
-        width: 600px;
-            }
-            @include viewport(x-large){
-                width: 600px;
-                    }  
-}
+
 .email-boxes {
     @include viewport(medium){
         display: flex;
