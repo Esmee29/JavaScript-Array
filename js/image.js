@@ -19,6 +19,15 @@ function displayRandomImage() {
       container.appendChild(img);
 
       document.getElementById('add-image-btn').disabled = false;
+
+      // Logging selected email address and image link in the console
+      const selectList = document.getElementById('email-address-dropdown');
+      const selectedOption = selectList.options[selectList.selectedIndex];
+      const selectedEmail = selectedOption.value;
+      if (selectedEmail !== 'Please select an email address.') {
+        console.log('Selected Email:', selectedEmail);
+        console.log('Image Link:', imageLink);
+      }
     })
     .catch(error => {
       console.log(error);
@@ -97,12 +106,10 @@ document.getElementById('email-address-dropdown').addEventListener('change', fun
     emailContainer.appendChild(imageElement);
   });
   document.getElementById('add-image-btn').addEventListener('click', function() {
-    // ... existing code ...
+     // Disabling the button after adding the image
+     this.disabled = true;
   
-    // Disabling the button after adding the image
-    this.disabled = true;
-  
-    // Add this line to regenerate the display image
-    displayRandomImage();
-  });
+     // Add this line to regenerate the display image
+     displayRandomImage();
+   });
 });
