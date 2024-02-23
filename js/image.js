@@ -73,10 +73,20 @@ document.getElementById('add-image-btn').addEventListener('click', function() {
 
   // Adding click event listener to delete the image
   deleteButton.addEventListener('click', function() {
+    // Remove image from DOM
     imageContainer.remove();
+
+    // Remove image URL from the map
+    const imageUrls = emailImageMap.get(selectedEmail) || [];
+    const index = imageUrls.indexOf(imageUrl);
+    if (index !== -1) {
+      emailImageMap.get(selectedEmail).splice(index, 1);
+
+      // Remove image URL from the console log
+      console.log(`Removed image URL: ${imageUrl}`);
+    }
   });
 
-  // Appending image and delete button to the image container
   imageContainer.appendChild(imageElement);
   imageContainer.appendChild(deleteButton);
 
@@ -84,40 +94,32 @@ document.getElementById('add-image-btn').addEventListener('click', function() {
   const emailContainer = document.getElementById('images-selected');
   emailContainer.appendChild(imageContainer);
 
-  // Adding the image URL to the map corresponding to the email address
   if (!emailImageMap.has(selectedEmail)) {
     emailImageMap.set(selectedEmail, []);
   }
   emailImageMap.get(selectedEmail).push(imageUrl);
 
-  // Disabling the button after adding the image
   this.disabled = true;
 });
 
-// Functionality for assigning images to multiple email addresses
+// Assigning images to multiple email addresses
 let emailImageMap = new Map();
 document.getElementById('email-address-dropdown').addEventListener('change', function() {
-  // Fetching the selected option from the dropdown
   const selectedOption = this.options[this.selectedIndex];
-  // Updating the displayed email address
   const currentEmailText = document.getElementById('current-email-text');
   currentEmailText.textContent = selectedOption.value;
 
-  // Updating the assigned image text with the selected email address
   const assignedImageText = document.getElementById('assigned-image-text');
   assignedImageText.textContent = `Assigned to: ${selectedOption.value}`;
 
-  // Enabling the 'add image' button
   const addImageButton = document.getElementById('add-image-btn');
   addImageButton.disabled = false;
 
-  // Clearing the current gallery of images
   const emailContainer = document.getElementById('images-selected');
   while (emailContainer.firstChild) {
     emailContainer.removeChild(emailContainer.firstChild);
   }
 
-  // Populating the gallery with images associated with the selected email address
   const images = emailImageMap.get(selectedOption.value) || [];
   images.forEach(imageUrl => {
     const imageElement = document.createElement('img');
@@ -134,10 +136,17 @@ document.getElementById('email-address-dropdown').addEventListener('change', fun
 
     // Adding click event listener to delete the image
     deleteButton.addEventListener('click', function() {
+      // Remove image from DOM
       imageContainer.remove();
+
+      // Remove image URL from the map
+      const index = emailImageMap.get(selectedOption.value).indexOf(imageUrl);
+      if (index !== -1) {
+        emailImageMap.get(selectedOption.value).splice(index, 1);
+        console.log(`Removed image URL: ${imageUrl}`);
+      }
     });
 
-    // Appending image and delete button to the image container
     imageContainer.appendChild(imageElement);
     imageContainer.appendChild(deleteButton);
     
@@ -153,3 +162,25 @@ document.getElementById('email-address-dropdown').addEventListener('change', fun
      displayRandomImage();
    });
 });
+
+// Function to delete an image
+function deleteImage(imageUrl, email) {
+  // Remove the image from the DOM
+  const imageContainers = document.querySelectorAll('.email-image');
+  imageContainers.forEach(container => {
+    const image = container.querySelector('.gallery-image');
+    if (image && image.src === imageUrl) {
+      container.remove();
+    }
+  });
+
+  // Remove the image URL from the map
+  if (emailImageMap.has(email)) {
+    const imageUrls = emailImageMap.get(email);
+    const index = imageUrls.indexOf(imageUrl);
+    if (index !== -1) {
+      emailImageMap.get(email).splice(index, 1);
+      console.log(`Removed image URL: ${imageUrl}`);
+    }
+  }
+}
