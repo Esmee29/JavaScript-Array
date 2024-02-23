@@ -6,7 +6,6 @@ function displayRandomImage() {
       let imageLink = URL.createObjectURL(images);
       let container = document.getElementById('image-container');
 
-      // Remove existing image 
       let oldImage = document.getElementById('display-image');
       if (oldImage) {
         oldImage.remove();
@@ -40,26 +39,21 @@ displayRandomImage();
 // Change the image when the button is clicked
 document.getElementById('generate-image').addEventListener('click', displayRandomImage);
 
-// Functionality for selecting an email address and associating an image with it
+// Selecting an email address and associating an image with it
 document.getElementById('add-image-btn').addEventListener('click', function() {
-  // Fetching the dropdown list element and the selected option
   const selectList = document.getElementById('email-address-dropdown');
   const selectedOption = selectList.options[selectList.selectedIndex];
 
-  // Checking if an email address is selected
   if (!selectedOption || selectedOption.value === 'Please select an email address.') {
     alert('Please choose an email address before adding the image.');
     return;
   }
 
-  // Fetching the displayed image and its URL
   const displayedImage = document.getElementById('display-image');
   const imageUrl = displayedImage.src;
 
-  // Retrieving the selected email address and creating an image element
   const selectedEmail = selectedOption.value;
   
-  // Create container for image with delete button
   const imageContainer = document.createElement('div');
   imageContainer.classList.add('email-image');
 
@@ -71,18 +65,14 @@ document.getElementById('add-image-btn').addEventListener('click', function() {
   deleteButton.textContent = 'Delete';
   deleteButton.classList.add('image-delete');
 
-  // Adding click event listener to delete the image
   deleteButton.addEventListener('click', function() {
-    // Remove image from DOM
     imageContainer.remove();
 
-    // Remove image URL from the map
     const imageUrls = emailImageMap.get(selectedEmail) || [];
     const index = imageUrls.indexOf(imageUrl);
     if (index !== -1) {
       emailImageMap.get(selectedEmail).splice(index, 1);
 
-      // Remove image URL from the console log
       console.log(`Removed image URL: ${imageUrl}`);
     }
   });
@@ -126,7 +116,7 @@ document.getElementById('email-address-dropdown').addEventListener('change', fun
     imageElement.src = imageUrl;
     imageElement.classList.add('gallery-image');
     
-    // Create container for image with delete button
+    // Deleting an image from the gallery
     const imageContainer = document.createElement('div');
     imageContainer.classList.add('email-image');
 
@@ -134,12 +124,9 @@ document.getElementById('email-address-dropdown').addEventListener('change', fun
     deleteButton.textContent = 'Delete';
     deleteButton.classList.add('image-delete');
 
-    // Adding click event listener to delete the image
     deleteButton.addEventListener('click', function() {
-      // Remove image from DOM
       imageContainer.remove();
 
-      // Remove image URL from the map
       const index = emailImageMap.get(selectedOption.value).indexOf(imageUrl);
       if (index !== -1) {
         emailImageMap.get(selectedOption.value).splice(index, 1);
@@ -150,22 +137,17 @@ document.getElementById('email-address-dropdown').addEventListener('change', fun
     imageContainer.appendChild(imageElement);
     imageContainer.appendChild(deleteButton);
     
-    // Adding the image container to the email container
     emailContainer.appendChild(imageContainer);
   });
 
   document.getElementById('add-image-btn').addEventListener('click', function() {
-     // Disabling the button after adding the image
      this.disabled = true;
   
-     // Add this line to regenerate the display image
      displayRandomImage();
    });
 });
 
-// Function to delete an image
-function deleteImage(imageUrl, email) {
-  // Remove the image from the DOM
+function deleteImageCombined(imageUrl, email) {
   const imageContainers = document.querySelectorAll('.email-image');
   imageContainers.forEach(container => {
     const image = container.querySelector('.gallery-image');
@@ -174,13 +156,10 @@ function deleteImage(imageUrl, email) {
     }
   });
 
-  // Remove the image URL from the map
-  if (emailImageMap.has(email)) {
-    const imageUrls = emailImageMap.get(email);
-    const index = imageUrls.indexOf(imageUrl);
-    if (index !== -1) {
-      emailImageMap.get(email).splice(index, 1);
-      console.log(`Removed image URL: ${imageUrl}`);
-    }
+  const imageUrls = emailImageMap.get(email) || [];
+  const index = imageUrls.indexOf(imageUrl);
+  if (index !== -1) {
+    emailImageMap.get(email).splice(index, 1);
+    console.log(`Removed image URL: ${imageUrl}`);
   }
 }
