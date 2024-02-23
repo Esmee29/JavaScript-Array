@@ -96,4 +96,13 @@ document.getElementById('email-address-dropdown').addEventListener('change', fun
     imageElement.classList.add('gallery-image');
     emailContainer.appendChild(imageElement);
   });
+  document.getElementById('add-image-btn').addEventListener('click', function() {
+    // ... existing code ...
+  
+    // Disabling the button after adding the image
+    this.disabled = true;
+  
+    // Add this line to regenerate the display image
+    displayRandomImage();
+  });
 });
