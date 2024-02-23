@@ -43,10 +43,15 @@ document.getElementById('generate-image').addEventListener('click', displayRando
 document.getElementById('add-image-btn').addEventListener('click', function() {
   const selectList = document.getElementById('email-address-dropdown');
   const selectedOption = selectList.options[selectList.selectedIndex];
+  const assignedImageText = document.getElementById('assigned-image-text'); // Select the element to display error message
 
   if (!selectedOption || selectedOption.value === 'Please select an email address.') {
-    alert('Please choose an email address before adding the image.');
+    assignedImageText.textContent = 'Please choose an email address before adding the image.'; // Set error message
+    assignedImageText.classList.add('no-email'); // Add class 'no-email'
     return;
+  } else {
+    assignedImageText.textContent = `Images assigned to email: ${selectedOption.value}`; // Set message with selected email
+    assignedImageText.classList.remove('no-email'); // Remove class 'no-email'
   }
 
   const displayedImage = document.getElementById('display-image');
@@ -85,6 +90,11 @@ document.getElementById('add-image-btn').addEventListener('click', function() {
   this.disabled = true;
 });
 
+// Remove no-email class when an email is selected from the dropdown
+document.getElementById('email-address-dropdown').addEventListener('change', function() {
+  const assignedImageText = document.getElementById('assigned-image-text');
+  assignedImageText.classList.remove('no-email');
+});
 // Assigning images to multiple email addresses
 let emailImageMap = new Map();
 document.getElementById('email-address-dropdown').addEventListener('change', function() {
@@ -128,11 +138,7 @@ document.getElementById('email-address-dropdown').addEventListener('change', fun
     emailContainer.appendChild(imageContainer);
   });
 
-  document.getElementById('add-image-btn').addEventListener('click', function() {
-     this.disabled = true;
   
-     displayRandomImage();
-   });
 });
 
 // Combined function to delete an image
@@ -150,5 +156,11 @@ function deleteImageCombined(imageUrl, email) {
   if (index !== -1) {
     emailImageMap.get(email).splice(index, 1);
     console.log(`Removed image URL: ${imageUrl}`);
+  }
+
+  // Check if there are no more images associated with this email
+  if ((emailImageMap.get(email) || []).length === 0) {
+    console.log(`No more images associated with email ${email}. Enabling add-image-btn.`);
+    document.getElementById('add-image-btn').disabled = false;
   }
 }
