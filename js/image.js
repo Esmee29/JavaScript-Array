@@ -33,8 +33,10 @@ function displayRandomImage() {
       console.log(error);
     });
 }
+
 // Display a random image when the page loads
 displayRandomImage();
+
 // Change the image when the button is clicked
 document.getElementById('generate-image').addEventListener('click', displayRandomImage);
 
@@ -56,13 +58,31 @@ document.getElementById('add-image-btn').addEventListener('click', function() {
 
   // Retrieving the selected email address and creating an image element
   const selectedEmail = selectedOption.value;
+  
+  // Create container for image with delete button
+  const imageContainer = document.createElement('div');
+  imageContainer.classList.add('email-image');
+
   const imageElement = document.createElement('img');
   imageElement.src = imageUrl;
   imageElement.classList.add('gallery-image');
 
-  // Adding the image element to the email container
+  const deleteButton = document.createElement('button');
+  deleteButton.textContent = 'Delete';
+  deleteButton.classList.add('image-delete');
+
+  // Adding click event listener to delete the image
+  deleteButton.addEventListener('click', function() {
+    imageContainer.remove();
+  });
+
+  // Appending image and delete button to the image container
+  imageContainer.appendChild(imageElement);
+  imageContainer.appendChild(deleteButton);
+
+  // Adding the image container to the email container
   const emailContainer = document.getElementById('images-selected');
-  emailContainer.appendChild(imageElement);
+  emailContainer.appendChild(imageContainer);
 
   // Adding the image URL to the map corresponding to the email address
   if (!emailImageMap.has(selectedEmail)) {
@@ -103,8 +123,28 @@ document.getElementById('email-address-dropdown').addEventListener('change', fun
     const imageElement = document.createElement('img');
     imageElement.src = imageUrl;
     imageElement.classList.add('gallery-image');
-    emailContainer.appendChild(imageElement);
+    
+    // Create container for image with delete button
+    const imageContainer = document.createElement('div');
+    imageContainer.classList.add('email-image');
+
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Delete';
+    deleteButton.classList.add('image-delete');
+
+    // Adding click event listener to delete the image
+    deleteButton.addEventListener('click', function() {
+      imageContainer.remove();
+    });
+
+    // Appending image and delete button to the image container
+    imageContainer.appendChild(imageElement);
+    imageContainer.appendChild(deleteButton);
+    
+    // Adding the image container to the email container
+    emailContainer.appendChild(imageContainer);
   });
+
   document.getElementById('add-image-btn').addEventListener('click', function() {
      // Disabling the button after adding the image
      this.disabled = true;

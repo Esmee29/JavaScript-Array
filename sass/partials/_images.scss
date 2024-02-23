@@ -73,3 +73,25 @@
     align-items: center;
     flex-direction: column;
   }
+  .image-delete{
+    background-color: $primary-color;
+    color: $secondary-color;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    margin-top: 20px;
+    font-weight: 600;
+    font-family: "Josefin Sans", sans-serif;
+    text-transform: uppercase; 
+  }
+  .image-delete:hover{
+    background-color: $secondary-color;
+    color: $primary-color;
+    cursor: pointer;
+    }
+    .email-image{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;  
+    }
