@@ -67,14 +67,7 @@ document.getElementById('add-image-btn').addEventListener('click', function() {
 
   deleteButton.addEventListener('click', function() {
     imageContainer.remove();
-
-    const imageUrls = emailImageMap.get(selectedEmail) || [];
-    const index = imageUrls.indexOf(imageUrl);
-    if (index !== -1) {
-      emailImageMap.get(selectedEmail).splice(index, 1);
-
-      console.log(`Removed image URL: ${imageUrl}`);
-    }
+    deleteImageCombined(imageUrl, selectedEmail);
   });
 
   imageContainer.appendChild(imageElement);
@@ -126,12 +119,7 @@ document.getElementById('email-address-dropdown').addEventListener('change', fun
 
     deleteButton.addEventListener('click', function() {
       imageContainer.remove();
-
-      const index = emailImageMap.get(selectedOption.value).indexOf(imageUrl);
-      if (index !== -1) {
-        emailImageMap.get(selectedOption.value).splice(index, 1);
-        console.log(`Removed image URL: ${imageUrl}`);
-      }
+      deleteImageCombined(imageUrl, selectedOption.value);
     });
 
     imageContainer.appendChild(imageElement);
@@ -147,6 +135,7 @@ document.getElementById('email-address-dropdown').addEventListener('change', fun
    });
 });
 
+// Combined function to delete an image
 function deleteImageCombined(imageUrl, email) {
   const imageContainers = document.querySelectorAll('.email-image');
   imageContainers.forEach(container => {
