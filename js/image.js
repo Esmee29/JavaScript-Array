@@ -73,6 +73,7 @@ document.getElementById('add-image-btn').addEventListener('click', function() {
   deleteButton.addEventListener('click', function() {
     imageContainer.remove();
     deleteImageCombined(imageUrl, selectedEmail);
+    document.getElementById('add-image-btn').disabled = false; // Enable the button after image deletion
   });
 
   imageContainer.appendChild(imageElement);
@@ -88,7 +89,11 @@ document.getElementById('add-image-btn').addEventListener('click', function() {
   emailImageMap.get(selectedEmail).push(imageUrl);
 
   this.disabled = true;
+
+  // Disable the button after image addition
+  document.getElementById('add-image-btn').disabled = true;
 });
+
 
 // Remove no-email class when an email is selected from the dropdown
 document.getElementById('email-address-dropdown').addEventListener('change', function() {
