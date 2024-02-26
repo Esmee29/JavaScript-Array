@@ -56,9 +56,15 @@ document.getElementById('add-image-btn').addEventListener('click', function() {
 
   const displayedImage = document.getElementById('display-image');
   const imageUrl = displayedImage.src;
-
   const selectedEmail = selectedOption.value;
-  
+
+  const imageExists = emailImageMap.get(selectedEmail) && emailImageMap.get(selectedEmail).includes(imageUrl);
+
+  if (imageExists) {
+    alert('You already have this image in the gallery.');
+    return;
+  }
+
   const imageContainer = document.createElement('div');
   imageContainer.classList.add('email-image');
 
@@ -93,7 +99,6 @@ document.getElementById('add-image-btn').addEventListener('click', function() {
   // Disable the button after image addition
   document.getElementById('add-image-btn').disabled = true;
 });
-
 
 // Remove no-email class when an email is selected from the dropdown
 document.getElementById('email-address-dropdown').addEventListener('change', function() {
