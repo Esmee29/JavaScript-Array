@@ -27,10 +27,27 @@ function displayRandomImage() {
         console.log('Selected Email:', selectedEmail);
         console.log('Image Link:', imageLink);
       }
+
+      // Check if the fetched image is already assigned to any email
+      const imageAssigned = checkImageAssigned(imageLink);
+      if (imageAssigned) {
+        alert('This image is already assigned to an email. You cannot add it again.');
+        document.getElementById('add-image-btn').disabled = true;
+      }
     })
     .catch(error => {
       console.log(error);
     });
+}
+
+// Function to check if the image is already assigned to any email
+function checkImageAssigned(imageUrl) {
+  for (let [email, images] of emailImageMap) {
+    if (images.includes(imageUrl)) {
+      return true;
+    }
+  }
+  return false;
 }
 
 // Display a random image when the page loads
@@ -99,12 +116,12 @@ document.getElementById('add-image-btn').addEventListener('click', function() {
   // Disable the button after image addition
   document.getElementById('add-image-btn').disabled = true;
 });
-
 // Remove no-email class when an email is selected from the dropdown
 document.getElementById('email-address-dropdown').addEventListener('change', function() {
   const assignedImageText = document.getElementById('assigned-image-text');
   assignedImageText.classList.remove('no-email');
 });
+
 // Assigning images to multiple email addresses
 let emailImageMap = new Map();
 document.getElementById('email-address-dropdown').addEventListener('change', function() {
@@ -147,8 +164,6 @@ document.getElementById('email-address-dropdown').addEventListener('change', fun
     
     emailContainer.appendChild(imageContainer);
   });
-
-  
 });
 
 // Combined function to delete an image
@@ -174,3 +189,12 @@ function deleteImageCombined(imageUrl, email) {
     document.getElementById('add-image-btn').disabled = false;
   }
 }
+document.getElementById('add-image-btn').addEventListener('click', function(e) {
+  var displayImage = document.getElementById('display-image').src; 
+  var imageUrls = emailImageMap.get(selectedOption.value) || [];
+
+  if (imageUrls.includes(displayImage)) {
+      alert('You already have this image in the gallery.');
+      e.preventDefault();
+  }
+});
